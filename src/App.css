@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .App {
   text-align: center;
   background-color: #26b1c6;
@@ -39,17 +43,15 @@
 }
 
 .custom-font {
-  font-family: 'Amatic SC';
+  font-family: "Amatic SC";
 }
 
 .container.App {
   background-color: #26b1c6;
-
 }
 
 .custom-navbar {
-  background-color: #C2DEDC
-  ;
+  background-color: #c2dedc;
 }
 
 ul {
