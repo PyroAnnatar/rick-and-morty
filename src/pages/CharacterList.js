@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 function CharacterList() {
   const {
-    isLoading,
+    isLoadingCharacters,
     filterType,
     filterValue,
     getFilteredCharacters,
@@ -38,9 +38,10 @@ function CharacterList() {
         />
       </div>
       <div className="w-full">
-        {isLoading.characters ? (
+        {isLoadingCharacters ? (
           <p className="text-white text-xl">Loading brain cells {`><))))*>`}</p>
         ) : (
+          // Grid kullanarak responsive bi yapı
           <div className="grid grid-cols-1 sm:grid-cols-5 min-w-full border-collapse shadow-md rounded-lg">
             <div className="hidden sm:block sm:p-2 border-b-2 border-black bg-[#d1e7dd] font-bold">
               Name
@@ -57,11 +58,12 @@ function CharacterList() {
             <div className="hidden sm:block sm:p-2 border-b-2 border-black bg-[#d1e7dd] font-bold">
               Status
             </div>
-
+            {/* Filtre tipi ve değerine göre gösterilecek karakterler */}
             {getFilteredCharacters().map((character, index) => (
               <Fragment key={character.id}>
                 <div
                   className={`p-2 text-center flex flex-col justify-center items-center ${
+                    // Tek/çift mantığını kullanarak değişen arkaplan renkleri
                     index % 2 === 0 ? "bg-[#c7dbd2]" : "bg-[#d1e7dd]"
                   }`}
                 >
@@ -81,6 +83,7 @@ function CharacterList() {
                   <p className="sm:hidden mb-1 font-bold">Picture:</p>
 
                   <img
+                    loading="lazy"
                     src={character.image}
                     alt={character.name}
                     className="border border-black max-w-[200px] sm:max-w-none w-full h-auto mx-auto"

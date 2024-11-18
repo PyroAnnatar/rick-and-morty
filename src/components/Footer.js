@@ -20,7 +20,7 @@ const Footer = () => {
           {" "}
           <p>
             <a
-              href="https://www.linkedin.com/"
+              href="https://www.linkedin.com/in/cem-çetinkaya-38758523a"
               className="text-blue-600 hover:underline"
             >
               Visit My LinkedIn

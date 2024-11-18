@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 function HomePage() {
   const [randomQuote, setRandomQuote] = useState("");
 
+  // Rasgele bir index'teki alıntıyı döndürmek
   const generateRandomQuote = () => {
     const quoteKeys = Object.keys(rickAndMortyQuotes);
     const randomQuote = quoteKeys[Math.floor(Math.random() * quoteKeys.length)];

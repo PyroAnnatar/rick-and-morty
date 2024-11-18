@@ -12,7 +12,7 @@ function Character({
   location,
   status,
 }) {
-  const { fetchRandomCharacter } = useContext(CharacterContext);
+  const { refetch } = useContext(CharacterContext);
   return (
     <div className="flex flex-col items-center justify-center gap-2">
       <h3 className="text-2xl font-semibold">{name}</h3>
@@ -30,7 +30,7 @@ function Character({
       </p>
       <button
         className="bg-teal-300 shadow-sm hover:bg-teal-300/75 active:bg-teal-300/60 tracking-wide text-lg font-semibold py-1 px-1 rounded-lg"
-        onClick={fetchRandomCharacter}
+        onClick={refetch}
       >
         Try Again
       </button>

@@ -1,14 +1,10 @@
 import CharacterContext from "../contexts/CharacterContext";
 
-import React, { useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import { Fragment } from "react";
 
 function LocationList() {
-  const { isLoading, locations, fetchLocations } = useContext(CharacterContext);
-
-  useEffect(() => {
-    fetchLocations();
-  }, []);
+  const { isLoadingLocations, locations } = useContext(CharacterContext);
 
   return (
     <div className="container App">
@@ -18,7 +14,7 @@ function LocationList() {
         className="mx-auto"
       />
       <h1 className="custom-font text-[350%]">Rick and Morty Location List</h1>
-      {isLoading.locations ? (
+      {isLoadingLocations ? (
         <p className="text-white text-xl">Loading brain cells {`><))))*>`}</p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-3 min-w-full border-collapse shadow-md rounded-lg">
@@ -32,7 +28,8 @@ function LocationList() {
             Dimension
           </div>
 
-          {locations.map((location, index) => (
+          {locations?.map((location, index) => (
+            // Grid'in özelliklerinden faydalanabilmek için Fragment kullanarak maplemek
             <Fragment key={location.id}>
               <div
                 className={`p-2 text-center ${

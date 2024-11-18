@@ -1,17 +1,26 @@
-import CharacterContext from "../contexts/CharacterContext";
+import React from "react";
 
-import React, { useEffect, useContext } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 
 function CharacterDetails() {
-  const { isLoading, character, fetchCharacter } = useContext(CharacterContext);
+  // URL'den id'yi almak
   const { id } = useParams();
 
-  useEffect(() => {
-    fetchCharacter(id);
-  }, [id]);
+  const { data: character, isPending: isLoadingCharacter } = useQuery({
+    // Id'yi alıp dinamik olarak fetchlemek ve alakalı girdiyi oluşturmak
+    queryKey: ["character", id],
+    queryFn: async () => {
+      const response = await fetch(
+        `https://rickandmortyapi.com/api/character/${id}`
+      );
+      const data = await response.json();
+      console.log(data);
+      return data;
+    },
+  });
 
-  if (isLoading.character) {
+  if (isLoadingCharacter) {
     return (
       <p className="text-white text-xl">Loading brain cells {`><))))*>`}</p>
     );

@@ -1,16 +1,13 @@
 import Character from "../components/Character";
 import CharacterContext from "../contexts/CharacterContext";
 
-import React, { useEffect } from "react";
+import React from "react";
 import { useContext } from "react";
 
 function RandomCharacter() {
-  const { isLoading, randomCharacter, fetchRandomCharacter } =
+  // Context'ten gerekli değişkenlere ulaşmak
+  const { isLoadingRandomCharacter, randomCharacter } =
     useContext(CharacterContext);
-
-  useEffect(() => {
-    fetchRandomCharacter();
-  }, []);
 
   return (
     <div className="container App flex flex-col items-center justify-center">
@@ -20,7 +17,7 @@ function RandomCharacter() {
         alt="Rick and Morty"
       />
       <h1 className="custom-font text-[325%]">Random Character</h1>
-      {!isLoading.randomCharacter && randomCharacter ? (
+      {!isLoadingRandomCharacter && randomCharacter ? (
         <Character
           name={randomCharacter.name}
           species={randomCharacter.species}
